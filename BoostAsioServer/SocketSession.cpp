@@ -144,7 +144,7 @@ namespace pingcuo
 			}
 
 			DWORD dwLength = 0;
-
+			// char 转 DWORD
 			char* len = (char*)&dwLength;
 			memcpy(len, &sHeader[tag.length()], sizeof(dwLength));
 
@@ -200,6 +200,7 @@ namespace pingcuo
 		try
 		{
 			DWORD dwLength = sMsg.size();
+			//DWORD转char
 			char* pLen = (char*)&dwLength;
 
 			//由于是异步发送，要保证数据发送完整时，才把数据销毁  
