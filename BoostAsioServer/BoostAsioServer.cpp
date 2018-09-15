@@ -7,12 +7,14 @@
 // 日志类实例化宏 必须定义在   #include "stdafx.h" 下面位置，  #include "LogUtil.h" 上面位置
 #define _LOG4CPP_
 
+
+
 #include <boost/archive/binary_iarchive.hpp>
 #include <boost/archive/binary_oarchive.hpp>
 #include <iostream>
 #include <sstream>
 #include "Message.h"
-#include "log/LogUtil.h"
+
 #include<boost/thread/thread.hpp>
 
 #include "BusinessServerSocketUtil.h"
@@ -78,7 +80,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	cout <<"main:threadid" <<boost::this_thread::get_id() << endl;
 
 
-
+	logInfo("test");
 
 	pingcuo::BusinessServerSocketUtil bs(9999);
 	bs.start();
