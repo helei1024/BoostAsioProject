@@ -13,10 +13,10 @@ class IoServicePool
 {
 	//DEFINE_SINGLETON_CONSTRUCT(IoServicePool);
 	DEFINE_SINGLETON_CONSTRUCT_WITH_DEFAULT(IoServicePool);
-public:
-	/// Construct the io_service pool.初始化4个 io_service
+private:
+	/// Construct the io_service pool.初始化4个 io_service   构造函数私有化
 	IoServicePool(const size_t pool_size = 4);
-
+public:
 	/// Run all io_service objects in the pool.
 	void Run();
 

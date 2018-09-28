@@ -78,6 +78,7 @@ namespace pingcuo
 
 			std::string data;
 			data.swap(sBody);
+			// 先读七个字节的数据  boost::array<char, 7> sHeader;
 			boost::asio::async_read(m_socket,
 				boost::asio::buffer(sHeader),
 				boost::bind(&SocketSession::handle_read_body, shared_from_this(),
@@ -88,8 +89,6 @@ namespace pingcuo
 				Message msg;
 				// 反序列化 todo
 				//message_iarchive(msg, data);
-
-
 
 				//*********************************** 反序列化*************************************
 				std::istringstream is(data);
@@ -134,7 +133,8 @@ namespace pingcuo
 				return;
 			}
 
-			if (tag.compare(0, tag.length(), sHeader.data(), 0, tag.length()))
+			// tag字符串和 接收到的 头进行对比 “PIN”
+			if (tag.compare(0, tag.length(), sHeader.data(), 0, tag.length()))  
 			{
 				//LOG4CXX_ERROR(firebird_log, KDS_CODE_INFO << "连接远程地址:[" << get_remote_addr() << "],socket异常:[这是个非法连接!]");
 				std::string strLog = "连接远程地址:[" + get_remote_addr() + "],socket异常:[这是个非法连接!]";
@@ -151,6 +151,7 @@ namespace pingcuo
 			sBody.resize(dwLength);
 			char* pBody = &sBody[0];
 
+			// 读取dwLength 这么长的数据 buffer(pBody, dwLength)
 			boost::asio::async_read(m_socket,
 				boost::asio::buffer(pBody, dwLength),
 				boost::bind(&SocketSession::handle_read_header, shared_from_this(),
