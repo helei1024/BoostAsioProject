@@ -6,6 +6,7 @@
 using namespace std;
 class Message
 {
+//test
 public:
 	Message();
 	Message(char *tag,int len);
