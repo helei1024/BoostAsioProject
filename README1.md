@@ -1,2 +1,0 @@
-# BoostAsioProject
-BoostAsioProject包含了一个简易的boost asio tcp服务器和客户端框架
